@@ -8,7 +8,6 @@ open Eliom_output.Html5
 let main_service =
   register_service ~path:["index"] ~get_params:unit
     (fun () () ->
-	 (*lwt cf = comment_box () in *)
 	 return (html (head (title (pcdata "")) [])
                                (body [h1 [pcdata "Hello work!"]])))
 let comment_service =
