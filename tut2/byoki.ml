@@ -20,8 +20,8 @@ let comment_service =
 let comment_page = Eliom_output.Html5.register
     ~service:comment_service
     (fun () (name, (comment, _)) ->
-      let message = name ^ ": " ^ comment
+      let message = name ^ "さんのコメント: " ^ comment
       in
       Lwt.return
         (html (head (title (pcdata "")) [])
-              (body [h1 [pcdata message]])));
+              (body [p [pcdata message]])));
