@@ -1,1 +1,5 @@
-please mkdir log, data, and db before make server.
+1. mkdir log, data, and db before make server.
+2. use your username at
+    <user>ahya</user>
+    <group>ahya</group>
+   in kowai.conf.
