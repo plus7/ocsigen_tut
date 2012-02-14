@@ -3,3 +3,11 @@ all:
 
 server:
 	ocsigenserver -c kowai.conf
+
+clean:
+	rm *.cmi *.cmo
+
+env:
+	mkdir data
+	mkdir db
+	mkdir log
