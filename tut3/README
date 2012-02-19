@@ -1,0 +1,5 @@
+1. do "make env" before "make server"
+2. use your username at
+    <user>ahya</user>
+    <group>ahya</group>
+   in kowai.conf
