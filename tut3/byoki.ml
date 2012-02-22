@@ -6,15 +6,31 @@ open Eliom_parameters
 open Eliom_output.Html5
 
 let main_service =
-  register_service ~path:["index"] ~get_params:unit
-    (fun () () ->
-	 return (html (head (title (pcdata "")) [])
-                               (body [h1 [pcdata "Hello work!"]])))
+  Eliom_services.service
+    ~path:["index"]
+    ~get_params:unit
+    ()
+
 let comment_service =
   Eliom_services.post_service
     ~fallback:main_service
     ~post_params:(string "name" ** string "comment" ** string "submit")
     ()
+
+let main_page =
+  register
+    ~service:main_service
+    (fun () () ->
+	 let f =
+	 (Eliom_output.Html5.post_form comment_service
+				       (fun (name, (comment, submit)) ->
+					    [p [pcdata "name: ";
+					    string_input ~input_type:`Text ~name:name ();
+					    pcdata "comment: ";
+					    string_input ~input_type:`Text ~name:comment ();
+					    string_input ~input_type:`Submit ~name:submit ~value:"Post" ()]]) ()) in
+	 return (html (head (title (pcdata "")) [])
+                               (body [f])))
 
 let comment_page = Eliom_output.Html5.register
     ~service:comment_service
